@@ -9,9 +9,9 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "seed-books": "vite exec src/seeders/books.js"
-
   },
   "dependencies": {
+    "axios": "^1.6.7",
     "firebase": "^10.7.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

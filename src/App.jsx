@@ -1,8 +1,9 @@
-import addBooks from "./seeders/books";
+import Home from "./pages/Home";
+
 function App() {
   return (
     <>
-      <button onClick={addBooks}>Press me</button>
+      <Home />
     </>
   );
 }
