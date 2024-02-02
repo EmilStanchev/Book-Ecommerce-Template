@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,8 +9,9 @@ const NavBar = () => {
   return (
     <nav className=" p-4 fixed top-0 left-0 w-full z-10 shadow-md">
       <div className="container  flex justify-between items-center">
-        <div className="text-black text-2xl font-semibold">NovelNirvana</div>
-
+        <Link to={"/"} className="text-black text-2xl font-semibold">
+          NovelNirvana
+        </Link>
         <div className="lg:hidden">
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -49,19 +51,24 @@ const NavBar = () => {
           </button>
         </div>
         <div
-          className={` bg-gray-800 lg:bg-transparent lg:relative lg:top-0 lg:left-auto lg:gap-10 k lg:flex ${
+          className={` bg-gray-300 lg:bg-transparent lg:relative lg:top-0 lg:left-auto lg:gap-10 k lg:flex ${
             (menuOpen ? "block" : "hidden",
             menuOpen ? "absolute top-full left-0 w-full" : "hidden")
           } lg:items-center lg:space-x-4`}
         >
           {pages.map((page, index) => (
-            <a
+            <Link
               key={index}
-              href={`#${page.toLowerCase()}`}
+              to={
+                page.toLocaleLowerCase() === "home"
+                  ? "/"
+                  : page.toLocaleLowerCase()
+              }
               className="block lg:inline-block mt-4 lg:mt-0 text-black hover:text-gray-300 w-full lg:w-auto"
+              onClick={() => setMenuOpen(false)}
             >
               {page}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
