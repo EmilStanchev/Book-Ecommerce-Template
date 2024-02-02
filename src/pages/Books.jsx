@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { useBooks } from "../hooks/useBooks";
 import Books from "../components/reusable/Books";
 import Spinner from "../components/reusable/Spinner";
+import Categories from "../components/reusable/Categories";
 
 const BookListWithButtons = () => {
   const [selectedCategory, setSelectedCategory] = useState("fiction");
@@ -16,11 +18,11 @@ const BookListWithButtons = () => {
       {loading ? (
         <Spinner />
       ) : (
-        <div>
-          <div>
-            <button className="text-xl">Fantasy</button>
+        <div className="flex flex-row ">
+          <Categories handleCategoryChange={handleCategoryChange} />
+          <div className="flex m-10 p-5">
+            <Books books={books} />
           </div>
-          <Books books={books} />
         </div>
       )}
     </div>

@@ -8,14 +8,7 @@ const Books = ({ books, style }) => {
       style={style}
     >
       {books?.map((book) => {
-        return (
-          <BookCard
-            key={book?.id}
-            title={book?.title}
-            imageUrl={book.imageUrl}
-            author={book?.authors}
-          />
-        );
+        return <BookCard key={book?.id} book={book} />;
       })}
     </div>
   );

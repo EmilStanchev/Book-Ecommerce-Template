@@ -2,21 +2,30 @@
 /* eslint-disable react/prop-types */
 // BookCard.js
 
-const BookCard = ({ title, author, imageUrl }) => {
+import { useNavigate } from "react-router";
+
+const BookCard = ({ book }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/books/${book?.id}`);
+  };
   return (
-    <div className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-xl ">
+    <div
+      className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-xl "
+      onClick={() => handleClick()}
+    >
       <div className="flex justify-center">
         <img
           className="p-8 rounded-t-lg text-center"
-          src={imageUrl}
+          src={book?.imageUrl}
           alt="product image"
         />
       </div>
       <div className="px-5 pb-5">
         <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-black">
-          {title}
+          {book?.title}
         </h5>
-        <h5>{author}</h5>
+        <h5>{book?.author}</h5>
 
         <div className="flex items-center justify-between mt-7">
           <span className="text-3xl font-bold text-gray-900 dark:text-black">
