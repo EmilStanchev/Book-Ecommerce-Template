@@ -1,9 +1,12 @@
 import BookCard from "./BookCard";
 
 /* eslint-disable react/prop-types */
-const Books = ({ books }) => {
+const Books = ({ books, style }) => {
   return (
-    <div className="flex flex-row flex-wrap gap-10 mt-20 justify-center">
+    <div
+      className="flex flex-row flex-wrap gap-10 mt-20 justify-center"
+      style={style}
+    >
       {books?.map((book) => {
         return (
           <BookCard
