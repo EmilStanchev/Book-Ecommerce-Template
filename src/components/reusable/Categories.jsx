@@ -1,4 +1,8 @@
+import { useState } from "react";
+import Slider from "react-slick";
+
 /* eslint-disable react/prop-types */
+
 const bookCategories = [
   "Fiction",
   "Non-Fiction",
@@ -31,21 +35,38 @@ const bookCategories = [
   "Religion and Spirituality",
   "Science and Nature",
 ];
+
 const Categories = ({ handleCategoryChange }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextCategory = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % bookCategories.length);
+  };
+
+  const prevCategory = () => {
+    setCurrentIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + bookCategories.length) % bookCategories.length
+    );
+  };
+
   return (
-    <div className="flex flex-col gap-10 bg-gray-200 mt-10 justify-start">
-      <h1 className="text-xl">Categories:</h1>
-      {bookCategories.map((category) => {
-        return (
-          <button
-            key={category}
-            className="category-button"
-            onClick={() => handleCategoryChange(category)}
-          >
-            {category}
-          </button>
-        );
-      })}
+    <div className="relative overflow-hidden">
+      <div className="flex transition-transform ease-in-out duration-300 transform translate-x-[-${currentIndex * 100}%]">
+        {bookCategories.map((category) => (
+          <div key={category.id} className="w-full px-4">
+            <div className="bg-gray text-black p-4 rounded-md">
+              <button
+                onClick={() => {
+                  handleCategoryChange(category);
+                }}
+              >
+                {category}
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

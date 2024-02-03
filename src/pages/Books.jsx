@@ -16,11 +16,11 @@ const BookListWithButtons = () => {
   };
 
   return (
-    <div id="home" className="flex flex-col items-center p-8 ">
+    <>
       {!isFetched ? (
         <Spinner />
       ) : (
-        <div className="flex p-5">
+        <div className="mt-[64px]">
           <Categories handleCategoryChange={handleCategoryChange} />
           {data?.length !== 0 ? (
             <BookList books={data} />
@@ -31,7 +31,7 @@ const BookListWithButtons = () => {
           )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 
