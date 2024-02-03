@@ -1,7 +1,7 @@
 import BookCard from "./BookCard";
 
 /* eslint-disable react/prop-types */
-const Books = ({ books, style }) => {
+const BookList = ({ books, style }) => {
   return (
     <div
       className="flex flex-row flex-wrap gap-10 mt-20 justify-center"
@@ -14,4 +14,4 @@ const Books = ({ books, style }) => {
   );
 };
 
-export default Books;
+export default BookList;

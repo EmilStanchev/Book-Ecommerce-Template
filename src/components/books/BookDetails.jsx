@@ -1,13 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { useParams } from "react-router";
-import { useBookById } from "../../hooks/useBooks";
 import Spinner from "../reusable/Spinner";
 import { useState } from "react";
 import PricingSection from "../reusable/PricingSection";
-import Books from "../reusable/Books";
+import { useGetBookById } from "../../hooks/useBook";
 
 const BookDetails = () => {
   const { bookId } = useParams();
-  const { book, loading } = useBookById(bookId);
+  const { data, isFetched, refetch } = useGetBookById(bookId);
   const [isImageEnlarged, setIsImageEnlarged] = useState(false);
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
@@ -29,34 +29,33 @@ const BookDetails = () => {
   const toggleImageSize = () => {
     setIsImageEnlarged(!isImageEnlarged);
   };
-  console.log("book", book);
   return (
     <div>
-      {loading ? (
+      {!isFetched ? (
         <Spinner />
       ) : (
         <div className="flex flex-col mt-10 ">
           <div className="flex flex-col md:flex-row p-4 md:p-8 justify-evenly">
             <div className="md:w-1/4">
               <img
-                src={book?.imageUrl}
-                alt={book?.title}
+                src={data?.imageUrl}
+                alt={data?.title}
                 className={imageClassName}
                 onClick={toggleImageSize}
               />
             </div>
             <div className="md:w-2/3 md:pl-8">
-              <h2 className="text-3xl font-bold mb-4">{book?.title}</h2>
+              <h2 className="text-3xl font-bold mb-4">{data?.title}</h2>
               <p className="text-gray-600 mb-2">
-                Authors: {book?.authors.join(", ")}
+                Authors: {data?.authors.join(", ")}
               </p>
-              <p className="text-gray-600 mb-2">Categories: {book?.category}</p>
-              <p className="text-gray-600 mb-2">Publisher: {book?.publisher}</p>
+              <p className="text-gray-600 mb-2">Categories: {data?.category}</p>
+              <p className="text-gray-600 mb-2">Publisher: {data?.publisher}</p>
 
               <p className="text-gray-800">
                 {isDescriptionExpanded
-                  ? book?.description.replace(/<[^>]*>/g, "")
-                  : extractSentences(book?.description, 2)}
+                  ? data?.description.replace(/<[^>]*>/g, "")
+                  : extractSentences(data?.description, 2)}
               </p>
               {isDescriptionExpanded ? (
                 <button
@@ -74,11 +73,11 @@ const BookDetails = () => {
                 </button>
               )}
               <div>
-                <h5 className="mt-10">Page number: {book?.pageCount}</h5>
+                <h5 className="mt-10">Page number: {data?.pageCount}</h5>
               </div>
             </div>
             <div>
-              <PricingSection price={book?.price} />
+              <PricingSection price={data?.price} />
             </div>
           </div>
           <div></div>

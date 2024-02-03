@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const BoxWithImage = ({ homeBgImage, title, text }) => {
   return (
-    <div className="flex mt-[64px] min-h-screen justify-center items-center flex-wrap flex-row">
+    <div className="flex min-h-screen justify-center items-center flex-wrap flex-row">
       <div className="text-center items-center gap-5 lg:w-1/2 lg:pr-8 flex flex-col">
         <h1 className="text-4xl lg:text-5xl text-black font-bold mb-4">
           {title}
