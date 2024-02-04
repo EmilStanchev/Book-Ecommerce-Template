@@ -1,12 +1,19 @@
 import homeBgImage from "../assets/images/cafe-book.png";
 import BoxWithImage from "../components/UI/BoxWithImage";
 import Footer from "../components/UI/Footer";
-import BookList from "../components/reusable/BookList";
 import Spinner from "../components/reusable/Spinner";
-import { useGetPopularBooks } from "../hooks/useBook";
+import { useGetBooks, useGetPopularBooks } from "../hooks/useBook";
+import PopularBooks from "../components/home/PopularBooks";
+import readingWoman from "../assets/images/womanReading.jpg";
+import readingWomen from "../assets/images/womenReading.jpg";
+import manReading from "../assets/images/manReading.jpg";
+import reading from "../assets/images/reading.jpg";
+import reading2 from "../assets/images/reading2.jpg";
 
 const Home = () => {
   const { data, isFetched } = useGetPopularBooks();
+  const { data: crimeBooks } = useGetBooks("Crime");
+  const { data: fantasyBooks } = useGetBooks("George R. R. Martin'");
 
   return (
     <div
@@ -16,7 +23,7 @@ const Home = () => {
       {!isFetched ? (
         <Spinner />
       ) : (
-        <>
+        <main>
           <BoxWithImage
             text="+5,000 books in one place"
             title="Best Place to Find
@@ -25,40 +32,24 @@ const Home = () => {
             homeBgImage={homeBgImage}
             buttonTitle="Start Reading"
           />
-          <div className="flex flex-col m-10 flex-wrap  items-center px-[64px]">
-            <div className="flex flex-col md:flex-row w-full justify-between">
-              <h1 className="font-serif text-2xl font-medium capitalize md:text-2xl">
-                Best sellers
-              </h1>
-              <button className="flex items-center text-gray-500 font-serif text-lg font-medium capitalize mt-4 md:mt-0">
-                See All
-                <span className="">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="m8.25 4.5 7.5 7.5-7.5 7.5"
-                    />
-                  </svg>
-                </span>
-              </button>
+          <PopularBooks data={data} title="Best sellers" />
+          <PopularBooks data={crimeBooks?.slice(0, 5)} title="Action" />
+          <PopularBooks data={fantasyBooks?.slice(0, 5)} title="Fantasy" />
+
+          <div className="flex flex-row flex-wrap justify-center items-center gap-10 bg-gray-300 w-full py-[64px]">
+            <h1 className="text-center text-4xl">Our happy clients</h1>
+            <div className="flex md:flex-col-2 justify-center gap-5 flex-wrap items-center">
+              <img src={readingWoman} className="w-1/6" />
+              <img src={readingWomen} className="w-1/6" />
+              <img src={manReading} className="w-1/6" />
+              <img src={reading} className="w-1/6" />
+              <img src={reading2} className="w-1/6" />
             </div>
-            <BookList
-              books={data}
-              className="grid-cols-1 md:grid-cols-4 lg:grid-cols-5"
-            />
           </div>
           <div className="w-full">
             <Footer />
           </div>
-        </>
+        </main>
       )}
     </div>
   );

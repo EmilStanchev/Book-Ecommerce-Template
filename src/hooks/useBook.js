@@ -11,7 +11,7 @@ export const useGetBooks = (category) => {
   const [query, setQuery] = useState("");
 
   const { data, isFetched, isLoading, error, refetch } = useQuery({
-    queryKey: ["books"],
+    queryKey: [`books/${category}`],
     queryFn: () => fetchBooks(query ? query : category),
     keepPreviousData: true,
     cacheTime: 0,
