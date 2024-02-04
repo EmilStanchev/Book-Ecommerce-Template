@@ -9,6 +9,7 @@ import readingWomen from "../assets/images/womenReading.jpg";
 import manReading from "../assets/images/manReading.jpg";
 import reading from "../assets/images/reading.jpg";
 import reading2 from "../assets/images/reading2.jpg";
+import Newsletter from "../forms/Newsletter";
 
 const Home = () => {
   const { data, isFetched } = useGetPopularBooks();
@@ -36,16 +37,17 @@ const Home = () => {
           <PopularBooks data={crimeBooks?.slice(0, 5)} title="Action" />
           <PopularBooks data={fantasyBooks?.slice(0, 5)} title="Fantasy" />
 
-          <div className="flex flex-row flex-wrap justify-center items-center gap-10 bg-gray-300 w-full py-[64px]">
+          <div className="flex flex-wrap justify-center items-center gap-10 bg-gray-300 w-full py-[64px]">
             <h1 className="text-center text-4xl">Our happy clients</h1>
-            <div className="flex md:flex-col-2 justify-center gap-5 flex-wrap items-center">
-              <img src={readingWoman} className="w-1/6" />
-              <img src={readingWomen} className="w-1/6" />
-              <img src={manReading} className="w-1/6" />
-              <img src={reading} className="w-1/6" />
-              <img src={reading2} className="w-1/6" />
+            <div className="flex flex-col justify-center items-center gap-5 md:flex-row md:justify-center md:items-center md:flex-wrap">
+              <img src={readingWoman} className="w-1/2 md:w-1/6" />
+              <img src={readingWomen} className="w-1/2 md:w-1/6" />
+              <img src={manReading} className="w-1/2 md:w-1/6" />
+              <img src={reading} className="w-1/2 md:w-1/6" />
+              <img src={reading2} className="w-1/2 md:w-1/6" />
             </div>
           </div>
+          <Newsletter />
           <div className="w-full">
             <Footer />
           </div>

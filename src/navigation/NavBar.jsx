@@ -8,13 +8,16 @@ const NavBar = ({ children }) => {
   const location = useLocation();
   const showSearchBarOnUrl = "/books";
 
-  const pages = ["Home", "Books", "Categories", "About", "Contact"];
+  const pages = ["Home", "Books", "About", "Contact"];
 
   return (
     <>
       <nav className=" p-4 fixed bg-white top-0 left-0 w-full z-10 shadow-md">
         <div className="container  flex justify-around items-center">
-          <Link to={"/"} className="text-black text-2xl font-semibold">
+          <Link
+            to={"/"}
+            className="text-black text-2xl hover:text-red-400 font-semibold"
+          >
             NovelNirvana
           </Link>
           {location.pathname === showSearchBarOnUrl && (
@@ -74,7 +77,7 @@ const NavBar = ({ children }) => {
                     ? "/"
                     : page.toLocaleLowerCase()
                 }
-                className="block lg:inline-block mt-4 lg:mt-0 text-black hover:text-gray-300 w-full lg:w-auto"
+                className="block lg:inline-block mt-4 lg:mt-0 text-black hover:text-red-400 w-full lg:w-auto"
                 onClick={() => setMenuOpen(false)}
               >
                 {page}

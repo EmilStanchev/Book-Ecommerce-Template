@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
-  const pages = ["Home", "Books", "Categories", "About", "Contact"];
+  const pages = ["Home", "Books", "About", "Contact"];
   const location = useLocation();
   const hideOnMobile = location === "/cart" ? "hidden lg:block" : "";
   const hideOnTablet = location === "/wishlist" ? "hidden md:block" : "";
@@ -27,7 +27,7 @@ const Footer = () => {
         </div>
 
         <div className="about-us md:row-span-4">
-          <h2 className="my-1 font-serif text-xl font-semibold">Quick Links</h2>
+          <h2 className="my-1 font-serif text-xl font-semibold">Explore</h2>
           {pages.map((page, index) => (
             <div key={index}>
               <Link
@@ -36,7 +36,7 @@ const Footer = () => {
                     ? "/"
                     : page.toLocaleLowerCase()
                 }
-                className="text-link inline-block py-1 font-sans"
+                className="text-link inline-block py-1 font-sans p-2 hover:translate-x-2 hover:text-red-400 text-gray-700"
               >
                 {page}
               </Link>
@@ -49,7 +49,7 @@ const Footer = () => {
           <p className="mb-3 text-sm">
             Email:{" "}
             <a href="mailto:info@nextbook.com" className="text-link mt-1 block">
-              info@nextbook.com
+              novelnirvana@example.com
             </a>
           </p>
           <p className="mb-3 text-sm">
@@ -59,9 +59,9 @@ const Footer = () => {
             </a>
           </p>
           <p className="mb-3 text-sm">
-            Address:{" "}
+            Address:
             <span className="mt-1 block">
-              No (77), 123 Main Street, Thingangyun, Yangon
+              123 Main Street, Anytown, CA 12345
             </span>
           </p>
         </div>
