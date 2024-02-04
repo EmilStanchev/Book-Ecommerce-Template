@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div
       className="flex justify-center
-     items-center flex-wrap mt-[64px]"
+     items-center flex-wrap"
     >
       {!isFetched ? (
         <Spinner />
@@ -19,6 +19,7 @@ const Home = () => {
             text="+5,000 books in one place"
             title="Welcome to Novel Nirvana"
             homeBgImage={homeBgImage}
+            buttonTitle="Start Reading"
           />
         </>
       )}
