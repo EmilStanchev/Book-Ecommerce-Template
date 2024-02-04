@@ -3,43 +3,53 @@
 // BookCard.js
 
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
-const BookCard = ({ book }) => {
+const BookCard = ({ className, book }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(`/books/${book?.id}`);
   };
   return (
-    <div
-      className="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow-xl "
-      onClick={() => handleClick()}
+    <article
+      className={`flex flex-col gap-y-2 rounded font-sans shadow hover:shadow-lg ${className}`}
     >
-      <div className="flex justify-center ">
-        <img
-          className="p-8 rounded-t-lg text-center w-full"
-          src={book?.imageUrl}
-          alt="product image"
-        />
-      </div>
-      <div className="px-5 pb-5">
-        <h5 className="text-sm font-semibold tracking-tight text-gray-900 dark:text-black">
-          {book?.title}
-        </h5>
-        <h5>{book?.author}</h5>
-
-        <div className="flex items-center justify-between mt-7">
-          <span className="text-xl font-bold text-gray-900 dark:text-black">
-            $599
-          </span>
-          <a
-            href="#"
-            className="text-black bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      <Link
+        to={`/books/${book?.id}`}
+        title={book?.title}
+        className="image-wrapper rounded border-2 border-skin-muted bg-skin-muted p-4 sm:p-8 md:p-4 lg:p-8"
+      >
+        <div className="relative bg-gray-200 h-44 w-full overflow-hidden transition-transform duration-200 hover:scale-105">
+          <img
+            src={book?.imageUrl}
+            alt={book?.title}
+            style={{
+              position: "absolute",
+              height: " 100%",
+              width: "100%",
+              inset: "0px",
+              color: "transparent",
+            }}
+          />
+        </div>
+      </Link>
+      <div className="content px-4 pb-4">
+        <header className="h-10 line-clamp-2">
+          <h3 className="text-sm">{book?.title}</h3>
+        </header>
+        <div className="price mb-1 font-medium">
+          <span>$599</span>
+        </div>
+        <div className="buttons flex gap-x-2">
+          <button
+            type="button"
+            className="primary-btn-color flex-1 rounded px-1 text-sm font-semibold"
           >
-            Add to cart
-          </a>
+            Add To Cart
+          </button>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

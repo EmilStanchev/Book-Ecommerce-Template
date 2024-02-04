@@ -46,22 +46,24 @@ export const getPopularBooks = async () => {
         params: {
           q: "subject:popular",
           orderBy: "relevance",
-          maxResults: 2,
+          maxResults: 6,
         },
       }
     );
 
-    const formattedBooks = response.data.items.map((book) => ({
-      id: book.id,
-      title: book.volumeInfo.title,
-      authors: book.volumeInfo.authors || ["Unknown Author"],
-      imageUrl: book.volumeInfo.imageLinks
-        ? book.volumeInfo.imageLinks.thumbnail
-        : "",
-      category: book.volumeInfo.categories
-        ? book.volumeInfo.categories[0]
-        : "Uncategorized",
-    }));
+    const formattedBooks = response.data.items
+      .map((book) => ({
+        id: book.id,
+        title: book.volumeInfo.title,
+        authors: book.volumeInfo.authors || ["Unknown Author"],
+        imageUrl: book.volumeInfo.imageLinks
+          ? book.volumeInfo.imageLinks.thumbnail
+          : "",
+        category: book.volumeInfo.categories
+          ? book.volumeInfo.categories[0]
+          : "Uncategorized",
+      }))
+      .filter((book) => book.imageUrl);
     return formattedBooks;
   } catch (error) {
     console.error("Error fetching popular books:", error);

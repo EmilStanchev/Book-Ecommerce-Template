@@ -12,7 +12,7 @@ const NavBar = ({ children }) => {
 
   return (
     <>
-      <nav className=" p-4 fixed top-0 left-0 w-full z-10 shadow-md">
+      <nav className=" p-4 fixed bg-white top-0 left-0 w-full z-10 shadow-md">
         <div className="container  flex justify-around items-center">
           <Link to={"/"} className="text-black text-2xl font-semibold">
             NovelNirvana
