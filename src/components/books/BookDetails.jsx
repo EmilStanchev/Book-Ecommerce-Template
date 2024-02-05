@@ -34,7 +34,7 @@ const BookDetails = () => {
       {!isFetched ? (
         <Spinner />
       ) : (
-        <div className="flex flex-col mt-10 ">
+        <div className="flex flex-col mt-10 p-24">
           <div className="flex flex-col md:flex-row p-4 md:p-8 justify-evenly">
             <div className="md:w-1/4">
               <img
@@ -72,8 +72,13 @@ const BookDetails = () => {
                   Read more
                 </button>
               )}
-              <div>
-                <h5 className="mt-10">Page number: {data?.pageCount}</h5>
+              <h5 className="mt-2">Page number: {data?.pageCount}</h5>
+              <h5 className="text-black text-3xl font-bold">${data?.price}</h5>
+              <div className="flex justify-between items-center w-1/3">
+                <div>
+                  <button>hii</button>
+                </div>
+                <button>Add to card</button>
               </div>
             </div>
             <div>

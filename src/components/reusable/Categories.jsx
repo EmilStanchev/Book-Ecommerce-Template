@@ -1,10 +1,6 @@
-import { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 /* eslint-disable react/prop-types */
-import "swiper/css";
-import "swiper/css/pagination";
+import { useState } from "react";
 
-import { Pagination } from "swiper/modules";
 const bookCategories = [
   "Fiction",
   "Non-Fiction",

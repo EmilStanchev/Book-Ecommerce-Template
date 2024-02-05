@@ -63,6 +63,7 @@ export const getPopularBooks = async () => {
         category: book.volumeInfo.categories
           ? book.volumeInfo.categories[0]
           : "Uncategorized",
+        price: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
       }))
       .filter((book) => book.imageUrl);
     return formattedBooks;
@@ -93,6 +94,7 @@ export const getBookById = async (bookId) => {
           response.data.volumeInfo.description || "No description available",
         pageCount: response.data.volumeInfo.pageCount || 0,
         publisher: response.data.volumeInfo.publisher || "Unknown Publisher",
+        price: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
       };
       return formattedBook;
     } else {

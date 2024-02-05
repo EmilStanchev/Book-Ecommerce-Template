@@ -13,6 +13,7 @@ const BookListWithButtons = () => {
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
+    setNumberOfBooks(10);
     refetch();
   };
 
