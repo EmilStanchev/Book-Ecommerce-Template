@@ -33,20 +33,26 @@ const BookCard = ({ className, book }) => {
           />
         </div>
       </Link>
-      <div className="content px-4 pb-4">
+      <div className="content pb-4 px-4">
         <header className="h-10 line-clamp-2">
           <h3 className="text-sm">{book?.title}</h3>
         </header>
-        <div className="price mb-1 font-medium">
-          <span>$599</span>
-        </div>
-        <div className="buttons flex gap-x-2">
-          <button
-            type="button"
-            className="primary-btn-color flex-1 rounded px-1 text-sm font-semibold"
+        <div className="flex justify-between items-center ">
+          <span className="price font-medium">${book?.price}</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6 hover:cursor-pointer"
           >
-            Add To Cart
-          </button>
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 4.5v15m7.5-7.5h-15"
+            />
+          </svg>
         </div>
       </div>
     </article>

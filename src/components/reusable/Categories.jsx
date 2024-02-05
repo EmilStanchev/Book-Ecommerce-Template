@@ -4,7 +4,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 
-// import required modules
 import { Pagination } from "swiper/modules";
 const bookCategories = [
   "Fiction",
@@ -37,9 +36,57 @@ const bookCategories = [
   "Sports and Outdoors",
   "Religion and Spirituality",
   "Science and Nature",
+  "Technology",
+  "Social Sciences",
+  "Health and Wellness",
+  "Parenting",
+  "Crafts and Hobbies",
+  "Humor",
+  "Political Science",
+  "True Crime",
+  "Education",
+  "Foreign Language",
+  "Mindfulness and Meditation",
+  "Travel Guides",
+  "Fashion and Style",
+  "Culinary Arts",
+  "Home and Garden",
+  "Relationships",
+  "Astronomy",
+  "Environmental Science",
+  "Mythology",
+  "Comedy",
+  "Military History",
+  "Futurism",
+  "True Adventure",
+  "Economics",
+  "Media and Communication",
+  "African Literature",
+  "Asian Literature",
+  "Middle Eastern Literature",
+  "Latin American Literature",
+  "Australian Literature",
+  "Westerns",
+  "Short Stories",
+  "Erotic",
+  "Sociology",
+  "Anthropology",
+  "Cognitive Science",
+  "Gender Studies",
+  "Legal Thriller",
+  "Satire",
+  "Magic Realism",
+  "Epic Poetry",
+  "Graphic Memoir",
+  "Espionage",
+  "Post-Apocalyptic",
+  "Utopian Fiction",
+  "Social Justice",
+  "Game Theory",
+  "Political Philosophy",
 ];
 
-const Categories = ({ handleCategoryChange }) => {
+/*const Categories = ({ handleCategoryChange }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const breakpoints = {
@@ -56,7 +103,7 @@ const Categories = ({ handleCategoryChange }) => {
   };
 
   return (
-    <div className="flex justify-center items-center flex-col gap-5">
+    <>
       <button className="flex" onClick={toggleFilter}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +152,76 @@ const Categories = ({ handleCategoryChange }) => {
           ))}
         </Swiper>
       )}
-    </div>
+    </>
+  );
+};*/
+
+const Categories = ({ handleCategoryChange }) => {
+  const [isCategoriesOpen, setIsCategoryOpen] = useState(true);
+
+  const categoryOpen = () => {
+    setIsCategoryOpen(!isCategoriesOpen);
+  };
+  return (
+    <>
+      <div className="flex w-full justify-between items-center content-center">
+        <h2 className="text-xl font-bold mb-4">Categories</h2>
+
+        {isCategoriesOpen ? (
+          <button onClick={() => categoryOpen()}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 4.5h14.25M3 9h9.75M3 13.5h5.25m5.25-.75L17.25 9m0 0L21 12.75M17.25 9v12"
+              />
+            </svg>
+          </button>
+        ) : (
+          <button onClick={() => categoryOpen()}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 4.5h14.25M3 9h9.75M3 13.5h9.75m4.5-4.5v12m0 0-3.75-3.75M17.25 21 21 17.25"
+              />
+            </svg>
+          </button>
+        )}
+      </div>
+
+      <div>
+        {isCategoriesOpen ? (
+          <>
+            <ul>
+              {bookCategories.map((category) => (
+                <li
+                  key={category}
+                  className={`cursor-pointer`}
+                  onClick={() => handleCategoryChange(category)}
+                >
+                  {category}
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : null}
+      </div>
+    </>
   );
 };
 
