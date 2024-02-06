@@ -7,9 +7,11 @@ import { Link } from "react-router-dom";
 
 const BookCard = ({ className, book }) => {
   const navigate = useNavigate();
+
   const handleClick = () => {
     navigate(`/books/${book?.id}`);
   };
+
   return (
     <article
       className={`flex flex-col gap-y-2 rounded font-sans shadow hover:shadow-lg ${className}`}
@@ -38,7 +40,13 @@ const BookCard = ({ className, book }) => {
           <h3 className="text-sm">{book?.title}</h3>
         </header>
         <div className="flex justify-between items-center ">
-          <span className="price font-medium">${book?.price}</span>
+          <span className="price font-medium">
+            {book?.price === 0 ? (
+              <h4 className="text-xl text-red-500 font-bold">Free</h4>
+            ) : (
+              `$${book?.price}`
+            )}
+          </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

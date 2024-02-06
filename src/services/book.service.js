@@ -28,7 +28,7 @@ export const fetchBooks = async (category) => {
             : "Uncategorized",
           description:
             book.volumeInfo.description || "No description available",
-          price: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
+          price: Math.floor(Math.random() * 30),
         }))
         .filter((book) => book.imageUrl && book.description);
     }

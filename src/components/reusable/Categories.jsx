@@ -14,6 +14,8 @@ const bookCategories = [
   "Business/Finance",
   "Science",
   "Travel",
+  "Baby",
+  "Health",
   "Cookbooks",
   "Thriller/Suspense",
   "Horror",
@@ -80,7 +82,7 @@ const bookCategories = [
   "Social Justice",
   "Game Theory",
   "Political Philosophy",
-];
+].sort();
 
 /*const Categories = ({ handleCategoryChange }) => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
