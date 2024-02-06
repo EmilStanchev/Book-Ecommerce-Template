@@ -16,20 +16,7 @@ export const fetchBooks = async (category) => {
 
     if (response.data.items) {
       formattedBooks = response.data.items
-        .map((book) => ({
-          id: book.id,
-          title: book.volumeInfo.title,
-          authors: book.volumeInfo.authors || ["Unknown Author"],
-          imageUrl: book.volumeInfo.imageLinks
-            ? book.volumeInfo.imageLinks.thumbnail
-            : "",
-          category: book.volumeInfo.categories
-            ? book.volumeInfo.categories[0]
-            : "Uncategorized",
-          description:
-            book.volumeInfo.description || "No description available",
-          price: Math.floor(Math.random() * 30),
-        }))
+        .map((book) => formatBook(book))
         .filter((book) => book.imageUrl && book.description);
     }
 
@@ -39,32 +26,21 @@ export const fetchBooks = async (category) => {
     return [];
   }
 };
-export const getPopularBooks = async () => {
+export const getBooksByCategory = async (category) => {
   try {
     const response = await axios.get(
       "https://www.googleapis.com/books/v1/volumes",
       {
         params: {
-          q: "subject:popular",
+          q: `subject:${category}`,
           orderBy: "relevance",
-          maxResults: 6,
+          maxResults: 5,
         },
       }
     );
 
     const formattedBooks = response.data.items
-      .map((book) => ({
-        id: book.id,
-        title: book.volumeInfo.title,
-        authors: book.volumeInfo.authors || ["Unknown Author"],
-        imageUrl: book.volumeInfo.imageLinks
-          ? book.volumeInfo.imageLinks.thumbnail
-          : "",
-        category: book.volumeInfo.categories
-          ? book.volumeInfo.categories[0]
-          : "Uncategorized",
-        price: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
-      }))
+      .map((book) => formatBook(book))
       .filter((book) => book.imageUrl);
     return formattedBooks;
   } catch (error) {
@@ -80,22 +56,7 @@ export const getBookById = async (bookId) => {
     );
 
     if (response.data && response.data.volumeInfo) {
-      const formattedBook = {
-        id: response.data.id,
-        title: response.data.volumeInfo.title,
-        authors: response.data.volumeInfo.authors || ["Unknown Author"],
-        imageUrl: response.data.volumeInfo.imageLinks
-          ? response.data.volumeInfo.imageLinks.thumbnail
-          : "",
-        category: response.data.volumeInfo.categories
-          ? response.data.volumeInfo.categories[0]
-          : "Uncategorized",
-        description:
-          response.data.volumeInfo.description || "No description available",
-        pageCount: response.data.volumeInfo.pageCount || 0,
-        publisher: response.data.volumeInfo.publisher || "Unknown Publisher",
-        price: Math.floor(Math.random() * (100 - 30 + 1)) + 30,
-      };
+      const formattedBook = formatBook(response?.data);
       return formattedBook;
     } else {
       console.error("Book not found");
@@ -105,4 +66,32 @@ export const getBookById = async (bookId) => {
     console.error("Error fetching book by ID:", error);
     return {};
   }
+};
+const getPrice = (responseData) => {
+  if (
+    responseData &&
+    responseData.saleInfo &&
+    responseData.saleInfo.listPrice &&
+    responseData.saleInfo.listPrice.amount
+  ) {
+    return responseData.saleInfo.listPrice.amount;
+  } else {
+    return 15;
+  }
+};
+const formatBook = (bookData) => {
+  const book = {
+    id: bookData.id,
+    title: bookData.volumeInfo.title,
+    authors: bookData.volumeInfo.authors || ["Unknown Author"],
+    imageUrl: bookData.volumeInfo.imageLinks
+      ? bookData.volumeInfo.imageLinks.thumbnail
+      : "",
+    category: bookData.volumeInfo.categories
+      ? bookData.volumeInfo.categories[0]
+      : "Uncategorized",
+    description: bookData.volumeInfo.description || "No description available",
+    price: getPrice(bookData),
+  };
+  return book;
 };

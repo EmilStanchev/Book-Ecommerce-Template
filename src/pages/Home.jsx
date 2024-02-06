@@ -2,17 +2,17 @@ import homeBgImage from "../assets/images/cafe-book.png";
 import BoxWithImage from "../components/UI/BoxWithImage";
 import Footer from "../components/UI/Footer";
 import Spinner from "../components/reusable/Spinner";
-import { useGetBooks, useGetPopularBooks } from "../hooks/useBook";
+import { useGetBooks } from "../hooks/useBook";
 import PopularBooks from "../components/home/PopularBooks";
 import readingWoman from "../assets/images/womanReading.jpg";
 import readingWomen from "../assets/images/womenReading.jpg";
 import manReading from "../assets/images/manReading.jpg";
 import reading from "../assets/images/reading.jpg";
 import reading2 from "../assets/images/reading2.jpg";
-import Newsletter from "../forms/Newsletter";
+import Newsletter from "../components/forms/Newsletter";
 
 const Home = () => {
-  const { data, isFetched } = useGetPopularBooks();
+  const { data, isFetched } = useGetBooks("Fiction");
   const { data: crimeBooks } = useGetBooks("Crime");
   const { data: fantasyBooks } = useGetBooks("George R. R. Martin'");
 
@@ -33,7 +33,7 @@ const Home = () => {
             homeBgImage={homeBgImage}
             buttonTitle="Start Reading"
           />
-          <PopularBooks data={data} title="Best sellers" />
+          <PopularBooks data={data?.slice(5, 10)} title="Best sellers" />
           <PopularBooks data={crimeBooks?.slice(0, 5)} title="Action" />
           <PopularBooks data={fantasyBooks?.slice(0, 5)} title="Fantasy" />
 

@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import {
   fetchBooks,
   getBookById,
-  getPopularBooks,
+  getBooksByCategory,
 } from "../services/book.service";
 
 export const useGetBooks = (category) => {
@@ -20,10 +20,10 @@ export const useGetBooks = (category) => {
   return { data, isLoading, error, isFetched, refetch, setQuery };
 };
 
-export const useGetPopularBooks = () => {
+export const useGetPopularBooks = (category) => {
   const { data, isFetched, isLoading, error, refetch } = useQuery({
     queryKey: ["popularBooks"],
-    queryFn: () => getPopularBooks(),
+    queryFn: () => getBooksByCategory(category),
     keepPreviousData: true,
     cacheTime: 0,
   });
