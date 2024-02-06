@@ -1,11 +1,15 @@
 /* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
-const { fontFamily } = require("tailwindcss/defaultTheme");
+const { fontFamily, defaultTheme } = require("tailwindcss/defaultTheme");
 
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      screens: {
+        xs: "405px",
+        ...defaultTheme?.screens,
+      },
       fontFamily: {
         serif: ["var(--font-fraunces)", ...fontFamily.serif],
         sans: ["var(--font-quicksand)", ...fontFamily.sans],

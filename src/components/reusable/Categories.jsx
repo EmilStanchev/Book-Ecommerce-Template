@@ -76,11 +76,13 @@ const bookCategories = [
   "Magic Realism",
   "Epic Poetry",
   "Graphic Memoir",
+  "Adult",
   "Espionage",
   "Post-Apocalyptic",
   "Utopian Fiction",
   "Social Justice",
   "Game Theory",
+  "Kids",
   "Political Philosophy",
 ].sort();
 

@@ -15,19 +15,22 @@ const BookInfo = ({ data, imageClassName, toggleImageSize }) => {
       setCount((prevCount) => prevCount - 1);
     }
   };
+
   const toggleDescription = () => {
     setIsDescriptionExpanded(!isDescriptionExpanded);
   };
+
   const extractSentences = (text, numSentences) => {
     const sentences = text.replace(/<[^>]*>/g, "");
     const shortVersion = sentences.split(".");
 
     return shortVersion.slice(0, numSentences).join(".");
   };
+
   return (
     <>
-      <div className="flex flex-col md:flex-row p-4 md:p-8 justify-evenly gap-10">
-        <div className="md:w-1/4 h-[400px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-4 md:p-8">
+        <div className="flex items-center justify-center ">
           <img
             src={data?.imageUrl}
             alt={data?.title}
@@ -35,7 +38,7 @@ const BookInfo = ({ data, imageClassName, toggleImageSize }) => {
             onClick={toggleImageSize}
           />
         </div>
-        <div className="md:w-2/4 ">
+        <div>
           <h2 className="text-3xl font-bold mb-4">{data?.title}</h2>
           <p className="text-gray-600 mb-2">
             Authors: {data?.authors.join(", ")}
@@ -48,38 +51,23 @@ const BookInfo = ({ data, imageClassName, toggleImageSize }) => {
               ? data?.description.replace(/<[^>]*>/g, "")
               : extractSentences(data?.description, 2)}
           </p>
-          {isDescriptionExpanded ? (
-            <button
-              onClick={toggleDescription}
-              className="text-blue-500 cursor-pointer"
-            >
-              Read less
-            </button>
-          ) : (
-            <button
-              onClick={toggleDescription}
-              className="text-blue-500 cursor-pointer"
-            >
-              Read more
-            </button>
-          )}
+          <button
+            onClick={toggleDescription}
+            className="text-blue-500 cursor-pointer"
+          >
+            {isDescriptionExpanded ? "Read less" : "Read more"}
+          </button>
           <h5 className="mt-2">Page number: {data?.pageCount}</h5>
           <h5 className="text-black text-3xl font-bold">
             ${data?.price * count}
           </h5>
-          <div className="flex items-center content-center justify-between p-4 gap-5">
+          <div className="flex items-center justify-between p-4 gap-5">
             <div className="flex justify-center items-center shadow-lg p-2 border-2">
-              <button
-                className="px-3 py-1 border border-gray-300 rounded"
-                onClick={handleDecrement}
-              >
+              <button className="px-3 py-1 text-3xl" onClick={handleDecrement}>
                 -
               </button>
               <div className="mx-4 font-bold">{count}</div>
-              <button
-                className="px-3 py-1 border border-gray-300 rounded"
-                onClick={handleIncrement}
-              >
+              <button className="px-3 py-1 text-3xl" onClick={handleIncrement}>
                 +
               </button>
             </div>
@@ -91,7 +79,10 @@ const BookInfo = ({ data, imageClassName, toggleImageSize }) => {
       </div>
 
       <div className="w-full">
-        <RelatedSection category={data?.category} className="grid-rows-3" />
+        <RelatedSection
+          category={data?.category}
+          className="sm:grid-rows-2 grid-rows-3 "
+        />
       </div>
     </>
   );

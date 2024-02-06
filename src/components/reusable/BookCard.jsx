@@ -13,15 +13,16 @@ const BookCard = ({ className, book }) => {
   };
 
   return (
+    //added max-w-[320px]
     <article
-      className={`flex flex-col gap-y-2 rounded font-sans shadow hover:shadow-lg ${className}`}
+      className={`flex flex-col gap-y-2 max-w-[320px] rounded font-sans shadow hover:shadow-lg ${className}`}
     >
       <Link
         to={`/books/${book?.id}`}
         title={book?.title}
-        className="image-wrapper rounded border-2 border-skin-muted bg-skin-muted p-4 sm:p-8 md:p-4 lg:p-8"
+        className="image-wrapper rounded border-2 border-skin-muted  p-4 sm:p-8 md:p-4 lg:p-8"
       >
-        <div className="relative bg-gray-200 h-44 w-full overflow-hidden transition-transform duration-200 hover:scale-105">
+        <div className="relative h-44 w-full overflow-hidden transition-transform duration-200 hover:scale-105">
           <img
             src={book?.imageUrl}
             alt={book?.title}
