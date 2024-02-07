@@ -1,38 +1,62 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../contexts/cardContext";
+import CancelIcon from "../../assets/icons/CancelIcon";
 
 const CartItem = ({ book, onClose }) => {
   const { removeFromCart } = useContext(CartContext);
-  return (
-    <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-4 flex flex-col md:flex-row">
-      {/* Image Section */}
-      <div className="md:w-1/3 relative overflow-hidden">
-        <img
-          src={book.imageUrl}
-          alt={book.title}
-          className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
-        />
-      </div>
+  const [count, setCount] = useState(1);
 
-      {/* Details Section */}
-      <div className="md:w-2/3 p-4 flex flex-col justify-between">
-        <div>
-          <h3 className="text-gray-800 font-semibold text-lg">{book.title}</h3>
-          <p className="text-gray-600 text-sm">{book.author}</p>
-          <p className="text-gray-700 mt-2">${book.price}</p>
-        </div>
-        <button
+  const handleIncrement = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  const handleDecrement = () => {
+    if (count > 0) {
+      setCount((prevCount) => prevCount - 1);
+    }
+  };
+
+  return (
+    <>
+      <div className="relative bg-white w-[250px] h-[250px] rounded-lg shadow-lg overflow-hidden mb-4 flex flex-col md:flex-row">
+        <CancelIcon
           onClick={() => {
             removeFromCart(book);
           }}
-          className="bg-gray-200  text-gray-800 font-bold py-2 px-4 rounded transition-colors duration-300 hover:text-white hover:bg-gray-700"
-        >
-          Remove
-        </button>
+          className="absolute top-0 right-0 ml-2 text-sm cursor-pointer p-2 z-10 text-gray-500 hover:text-gray-800"
+        />
+        <div className="relative overflow-hidden">
+          <img
+            src={book.imageUrl}
+            alt={book.title}
+            className="w-full h-auto object-cover transition-transform duration-300 hover:scale-105"
+          />
+        </div>
+        <div className="md:w-2/3 p-4 flex flex-col justify-between">
+          <div>
+            <h3 className="text-gray-800 font-semibold text-lg">
+              {book.title}
+            </h3>
+            <p className="text-gray-600 text-sm">{book.author}</p>
+            <p className="text-gray-700 mt-2">${book.price * count}</p>
+          </div>
+          <div className="flex justify-center items-center p-2">
+            <button className="px-3 py-1 text-3xl" onClick={handleDecrement}>
+              -
+            </button>
+            <div className="mx-4 border-2 border-red-800 font-bold">
+              {count}
+            </div>
+            <button className="px-3 py-1 text-3xl" onClick={handleIncrement}>
+              +
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

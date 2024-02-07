@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import RelatedSection from "../reusable/RelatedSection";
+import { CartContext } from "../contexts/cardContext";
 
 const BookInfo = ({ data, imageClassName, toggleImageSize }) => {
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
   const [count, setCount] = useState(1);
+  const { addToCart } = useContext(CartContext);
 
   const handleIncrement = () => {
     setCount((prevCount) => prevCount + 1);
@@ -71,7 +73,10 @@ const BookInfo = ({ data, imageClassName, toggleImageSize }) => {
                 +
               </button>
             </div>
-            <button className="bg-black text-center text-white w-full px-4 py-2 rounded">
+            <button
+              onClick={() => addToCart(data)}
+              className="bg-black text-center text-white w-full px-4 py-2 rounded"
+            >
               Add to Cart
             </button>
           </div>

@@ -3,21 +3,21 @@
 import { useContext } from "react";
 import { CartContext } from "../contexts/cardContext";
 import CartItem from "./CartItem";
-
+import CancelIcon from "../../assets/icons/CancelIcon";
 const ECommerceCard = ({ onClose }) => {
   const { cartItems } = useContext(CartContext);
 
   const getTotalPrice = () => {
     let sum = 0;
-    cartItems?.map((item) => {
-      sum += item?.price;
+    cartItems?.forEach((item) => {
+      sum += item?.price * item?.count; // Multiply price by count to get total for each item
     });
     return sum;
   };
 
   return (
-    <div className="fixed top-4 right-4 z-50 ">
-      <div className="bg-white p-4 rounded-lg shadow-lg">
+    <div className="bg-white fixed top-4 right-4 shadow-lg p-3 z-50 ">
+      <div className=" text-center p-4 rounded-lg ">
         <h2 className="text-lg font-semibold mb-4">Shopping Cart</h2>
         {cartItems.length === 0 ? (
           <p>Your cart is empty</p>
@@ -28,13 +28,20 @@ const ECommerceCard = ({ onClose }) => {
             ))}
           </div>
         )}
-        <h4 className="tet-xl">Total price {getTotalPrice()}</h4>
-        <button
-          onClick={onClose}
-          className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded mt-4"
-        >
-          Close
+        <hr className="w-full text-black" />
+        <h4 className="tet-xl">Total price: ${getTotalPrice()}</h4>
+        <CancelIcon
+          onClick={() => {
+            onClose();
+          }}
+          className="absolute top-0 right-0 ml-2 text-sm cursor-pointer p-2 z-10 text-gray-500 hover:text-gray-800"
+        />
+      </div>
+      <div className="flex justify-between flex-row flex-wrap gap-2  w-full">
+        <button className="bg-black text-white text-lg text-center p-2">
+          Checkout
         </button>
+        <button className="text-lg border-2 border-black p-2">View Cart</button>
       </div>
     </div>
   );

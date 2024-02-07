@@ -92,6 +92,7 @@ const formatBook = (bookData) => {
       : "Uncategorized",
     description: bookData.volumeInfo.description || "No description available",
     price: getPrice(bookData),
+    count: 1,
   };
   return book;
 };
