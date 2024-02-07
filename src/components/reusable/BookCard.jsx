@@ -2,10 +2,14 @@
 /* eslint-disable react/prop-types */
 // BookCard.js
 
+import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import { CartContext } from "../contexts/cardContext";
 
 const BookCard = ({ className, book }) => {
+  const { addToCart } = useContext(CartContext); // Access addToCart function from CartContext
+
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -55,6 +59,9 @@ const BookCard = ({ className, book }) => {
             strokeWidth={1.5}
             stroke="currentColor"
             className="w-6 h-6 hover:cursor-pointer"
+            onClick={() => {
+              addToCart(book);
+            }}
           >
             <path
               strokeLinecap="round"

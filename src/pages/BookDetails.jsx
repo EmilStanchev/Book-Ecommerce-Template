@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { useParams } from "react-router";
-import Spinner from "../reusable/Spinner";
+import Spinner from "../components/reusable/Spinner";
 import { useState } from "react";
-import RelatedSection from "../reusable/RelatedSection";
-import { useGetBookById } from "../../hooks/useBook";
-import BookInfo from "./BookInfo";
+import { useGetBookById } from "../hooks/useBook";
+import BookInfo from "../components/books/BookInfo";
+import Footer from "../components/UI/Footer";
 
 const BookDetails = () => {
   const { bookId } = useParams();
@@ -32,6 +32,7 @@ const BookDetails = () => {
           />
         </div>
       )}
+      <Footer />
     </div>
   );
 };

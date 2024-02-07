@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { CartProvider } from "./components/contexts/cardContext";
 import AppRouter from "./components/utils/AppRouter";
 import NavBar from "./navigation/NavBar";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -8,11 +9,13 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <NavBar>
-        <div className="min-h-[100vh]">
-          <AppRouter />
-        </div>
-      </NavBar>
+      <CartProvider>
+        <NavBar>
+          <div className="min-h-[100vh]">
+            <AppRouter />
+          </div>
+        </NavBar>
+      </CartProvider>
     </QueryClientProvider>
   );
 }

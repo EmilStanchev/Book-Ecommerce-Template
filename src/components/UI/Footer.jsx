@@ -7,7 +7,9 @@ const Footer = () => {
   const hideOnTablet = location === "/wishlist" ? "hidden md:block" : "";
 
   return (
-    <footer className={`mt-auto shadow-inner ${hideOnMobile} ${hideOnTablet}`}>
+    <footer
+      className={`mt-auto w-full shadow-inner ${hideOnMobile} ${hideOnTablet}`}
+    >
       <div className="footer-container mx-auto grid max-w-6xl grid-cols-2 gap-6 px-4 py-10 md:grid-cols-4 md:grid-rows-4 md:gap-x-6 md:gap-y-0 md:px-8 lg:gap-x-8 lg:gap-y-2">
         <div className="bookstore-desc col-span-2 md:row-span-3">
           <h2 className="my-2 font-serif text-xl font-semibold">
@@ -68,7 +70,9 @@ const Footer = () => {
       </div>
       <div className="copyright-notice-container bg-skin-dark">
         <div className="copyright-notice mx-auto flex justify-center max-w-6xl flex-col items-center py-1 px-4 text-skin-base md:flex-row  md:justify-between md:px-8">
-          <span>© Copyright {new Date().getFullYear()} - Novel Nirvana</span>
+          <span className="text-center w-full">
+            © Copyright {new Date().getFullYear()} - Novel Nirvana
+          </span>
         </div>
       </div>
     </footer>

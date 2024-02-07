@@ -1,9 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "../../pages/Home";
 import BookListWithButtons from "../../pages/Books";
-import BookDetails from "../books/BookDetails";
+import BookDetails from "../../pages/BookDetails";
 import Error from "../../pages/Error";
 import About from "../../pages/About";
+import BookListing from "../../pages/BookListing";
 
 const AppRouter = () => {
   return (
@@ -12,6 +13,7 @@ const AppRouter = () => {
       <Route path="/books" element={<BookListWithButtons />} />
       <Route path="/books/:bookId" element={<BookDetails />} />
       <Route path="/about" element={<About />} />
+      <Route path="/card" element={<BookListing />} />
 
       <Route path="*" element={<Error />} />
     </Routes>

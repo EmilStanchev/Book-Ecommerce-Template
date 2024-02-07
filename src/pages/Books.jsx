@@ -4,6 +4,7 @@ import BookList from "../components/reusable/BookList";
 import Spinner from "../components/reusable/Spinner";
 import Categories from "../components/reusable/Categories";
 import { useGetBooks } from "../hooks/useBook";
+import Footer from "../components/UI/Footer";
 
 const BookListWithButtons = () => {
   const [selectedCategory, setSelectedCategory] = useState("fiction");
@@ -54,6 +55,7 @@ const BookListWithButtons = () => {
               </div>
             )}
           </div>
+          <Footer />
         </div>
       )}
     </>
