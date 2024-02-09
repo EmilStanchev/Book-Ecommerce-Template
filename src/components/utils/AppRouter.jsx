@@ -4,7 +4,7 @@ import BookListWithButtons from "../../pages/Books";
 import BookDetails from "../../pages/BookDetails";
 import Error from "../../pages/Error";
 import About from "../../pages/About";
-import BookListing from "../../pages/BookListing";
+import Checkout from "../../pages/Checkout";
 
 const AppRouter = () => {
   return (
@@ -13,7 +13,7 @@ const AppRouter = () => {
       <Route path="/books" element={<BookListWithButtons />} />
       <Route path="/books/:bookId" element={<BookDetails />} />
       <Route path="/about" element={<About />} />
-      <Route path="/card" element={<BookListing />} />
+      <Route path="/checkout" element={<Checkout />} />
 
       <Route path="*" element={<Error />} />
     </Routes>

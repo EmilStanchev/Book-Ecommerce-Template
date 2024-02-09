@@ -24,10 +24,11 @@ const Newsletter = () => {
     }
     return errors;
   };
+
   return (
-    <div className="flex flex-col w-full gap-2 justify-center items-center p-20">
+    <div className="flex flex-col w-full justify-center items-center p-8 md:p-20">
       <h1 className="text-4xl font-bold">Join Our Newsletter</h1>
-      <p className="text-gray-500 text-lg">
+      <p className="text-gray-500 text-lg text-center md:text-left mt-4 md:mt-6">
         Signup to be the first to hear about exclusive deals, special offers and
         upcoming collections
       </p>
@@ -37,16 +38,16 @@ const Newsletter = () => {
         onSubmit={handleSubscribe}
       >
         {subscribed ? (
-          <p className="mt-3 text-green-600 text-lg">
+          <p className="mt-6 text-green-600 text-lg">
             Thank you for subscribing! You will receive our weekly newsletter at{" "}
             {emailValue}
           </p>
         ) : (
-          <Form className="flex flex-row justify-center gap-10 w-full mt-7">
+          <Form className="flex flex-col justify-start lg:justify-center md:flex-row w-full mt-6 md:mt-8 md:gap-4">
             <Field
               type="email"
               name="email"
-              className="w-1/3 border-2 border-black p-5 text-xl"
+              className="w-full md:w-2/3 border-2 border-black p-3 md:p-5 text-lg"
               placeholder="Enter email for weekly newsletter"
             />
             <ErrorMessage
@@ -56,7 +57,7 @@ const Newsletter = () => {
             />
             <button
               type="submit"
-              className="bg-black p-5 text-xl hover:text-red-400 text-white"
+              className="w-full md:w-auto bg-black p-3 md:p-5 text-lg hover:text-red-400 text-white mt-4 md:mt-0"
               disabled={subscribed}
             >
               {subscribed ? "Subscribing..." : "Subscribe"}

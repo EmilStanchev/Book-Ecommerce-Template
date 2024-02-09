@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { CartContext } from "../contexts/cardContext";
 import CartItem from "./CartItem";
 import CancelIcon from "../../assets/icons/CancelIcon";
+import { Link } from "react-router-dom";
 const ECommerceCard = ({ onClose }) => {
   const { cartItems } = useContext(CartContext);
 
@@ -38,9 +39,12 @@ const ECommerceCard = ({ onClose }) => {
         />
       </div>
       <div className="flex justify-between flex-row flex-wrap gap-2  w-full">
-        <button className="bg-black text-white text-lg text-center p-2">
+        <Link
+          to="/checkout"
+          className="bg-black text-white text-lg text-center p-2"
+        >
           Checkout
-        </button>
+        </Link>
         <button className="text-lg border-2 border-black p-2">View Cart</button>
       </div>
     </div>

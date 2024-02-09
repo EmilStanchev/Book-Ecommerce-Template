@@ -25,7 +25,6 @@ const BookInfo = ({ data, imageClassName, toggleImageSize }) => {
   const extractSentences = (text, numSentences) => {
     const sentences = text.replace(/<[^>]*>/g, "");
     const shortVersion = sentences.split(".");
-
     return shortVersion.slice(0, numSentences).join(".");
   };
 
