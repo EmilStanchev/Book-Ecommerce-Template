@@ -36,9 +36,10 @@ const Footer = () => {
                 to={
                   page.toLocaleLowerCase() === "home"
                     ? "/"
-                    : page.toLocaleLowerCase()
+                    : `../${page.toLocaleLowerCase()}`
                 }
                 className="text-link inline-block py-1 font-sans p-2 hover:translate-x-2 hover:text-red-400 text-gray-700"
+                preventScrollReset={false}
               >
                 {page}
               </Link>

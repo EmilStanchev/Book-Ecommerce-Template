@@ -5,18 +5,23 @@ import BookDetails from "../../pages/BookDetails";
 import Error from "../../pages/Error";
 import About from "../../pages/About";
 import Checkout from "../../pages/Checkout";
+import Contact from "../../pages/Contact";
+import ScrollToTop from "../../navigation/ScrollToTop";
 
 const AppRouter = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/books" element={<BookListWithButtons />} />
-      <Route path="/books/:bookId" element={<BookDetails />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/checkout" element={<Checkout />} />
-
-      <Route path="*" element={<Error />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/books" element={<BookListWithButtons />} />
+        <Route path="/books/:bookId" element={<BookDetails />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/checkout" element={<Checkout />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </>
   );
 };
 export default AppRouter;

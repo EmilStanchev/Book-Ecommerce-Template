@@ -47,9 +47,7 @@ const CartItem = ({ book, onClose }) => {
             <button className="px-3 py-1 text-3xl" onClick={handleDecrement}>
               -
             </button>
-            <div className="mx-4 border-2 border-red-800 font-bold">
-              {count}
-            </div>
+            <div className="mx-4 font-bold">{count}</div>
             <button className="px-3 py-1 text-3xl" onClick={handleIncrement}>
               +
             </button>

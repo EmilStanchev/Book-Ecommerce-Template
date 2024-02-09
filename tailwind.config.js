@@ -13,6 +13,7 @@ export default {
       fontFamily: {
         serif: ["var(--font-fraunces)", ...fontFamily.serif],
         sans: ["var(--font-quicksand)", ...fontFamily.sans],
+        eyesome: ["Eyesome Script", "cursive"],
       },
       colors: {
         skin: {

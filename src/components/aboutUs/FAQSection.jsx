@@ -45,7 +45,10 @@ const questions = [
 
 const FAQSection = () => {
   return (
-    <div className="mt-12 flex flex-col justify-center items-center w-full p-20">
+    <div
+      id="questions"
+      className="mt-12 flex flex-col justify-center items-center w-full p-20"
+    >
       <h2 className="text-3xl font-bold mb-6">Frequently Asked Questions</h2>
       <div className="space-y-6 w-full">
         {questions?.map((question) => {

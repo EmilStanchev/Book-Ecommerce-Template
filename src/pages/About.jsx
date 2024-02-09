@@ -69,9 +69,9 @@ const About = () => {
         <h3 className="text-xl font-bold mb-6 text-center">
           Experience the convenience and joy of shopping for books online
         </h3>
-        <div className="grid grid-cols-2 my-5 gap-5">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 my-5 gap-5">
           <ServiceCard
-            icon={<BookIcon />}
+            icon={<BookIcon className="w-6 h-6" />}
             title="Wide Selection"
             description="Choose from a vast collection of books in various genres"
           />
