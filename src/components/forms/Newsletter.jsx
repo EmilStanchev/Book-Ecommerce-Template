@@ -43,7 +43,11 @@ const Newsletter = () => {
             {emailValue}
           </p>
         ) : (
-          <Form className="flex flex-col justify-start lg:justify-center md:flex-row w-full mt-6 md:mt-8 md:gap-4">
+          <Form
+            id="newsletter"
+            autoComplete="false"
+            className="flex flex-col justify-start lg:justify-center md:flex-row w-full mt-6 md:mt-8 md:gap-4"
+          >
             <Field
               type="email"
               name="email"

@@ -6,7 +6,7 @@ import CartItem from "./CartItem";
 import CancelIcon from "../../assets/icons/CancelIcon";
 import { Link } from "react-router-dom";
 const ECommerceCard = ({ onClose }) => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, clearCart } = useContext(CartContext);
 
   const getTotalPrice = () => {
     let sum = 0;
@@ -45,7 +45,12 @@ const ECommerceCard = ({ onClose }) => {
         >
           Checkout
         </Link>
-        <button className="text-lg border-2 border-black p-2">View Cart</button>
+        <button
+          onClick={() => clearCart()}
+          className="text-lg border-2 border-black p-2"
+        >
+          Clear Cart
+        </button>
       </div>
     </div>
   );

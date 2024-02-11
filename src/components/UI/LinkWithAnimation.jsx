@@ -9,9 +9,9 @@ const LinkWithAnimation = ({
   hoverColor,
   onClick,
   style,
+  className,
 }) => {
   const [isHover, setIsHover] = useState(false);
-
   const link = {
     cursor: "pointer",
     color: isHover ? hoverColor : color,
@@ -32,6 +32,7 @@ const LinkWithAnimation = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
+      className={className}
     >
       {text}
     </Link>

@@ -40,11 +40,31 @@ const Home = () => {
           <div className="flex flex-wrap justify-center items-center gap-10 bg-gray-300 w-full py-[64px]">
             <h1 className="text-center text-4xl">Our happy clients</h1>
             <div className="flex flex-col justify-center items-center gap-5 md:flex-row md:justify-center md:items-center md:flex-wrap">
-              <img src={readingWoman} className="w-1/2 md:w-1/6" />
-              <img src={readingWomen} className="w-1/2 md:w-1/6" />
-              <img src={manReading} className="w-1/2 md:w-1/6" />
-              <img src={reading} className="w-1/2 md:w-1/6" />
-              <img src={reading2} className="w-1/2 md:w-1/6" />
+              <img
+                src={readingWoman}
+                alt="image of happy client"
+                className="w-1/2 md:w-1/6"
+              />
+              <img
+                src={readingWomen}
+                alt="image of happy client"
+                className="w-1/2 md:w-1/6"
+              />
+              <img
+                src={manReading}
+                alt="image of happy client"
+                className="w-1/2 md:w-1/6"
+              />
+              <img
+                src={reading}
+                alt="image of happy client"
+                className="w-1/2 md:w-1/6"
+              />
+              <img
+                src={reading2}
+                alt="image of happy client"
+                className="w-1/2 md:w-1/6"
+              />
             </div>
           </div>
           <Newsletter />

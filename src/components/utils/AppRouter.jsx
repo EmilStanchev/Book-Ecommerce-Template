@@ -7,11 +7,14 @@ import About from "../../pages/About";
 import Checkout from "../../pages/Checkout";
 import Contact from "../../pages/Contact";
 import ScrollToTop from "../../navigation/ScrollToTop";
+import { ScrollToElement } from "../../navigation/ScrollToTop";
+import GeneralQuestions from "../../pages/GeneralQuestions";
 
 const AppRouter = () => {
   return (
     <>
       <ScrollToTop />
+      <ScrollToElement />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/books" element={<BookListWithButtons />} />
@@ -19,6 +22,11 @@ const AppRouter = () => {
         <Route path="/about" element={<About />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/contact" element={<Contact />} />
+        <Route
+          path="/contact/generalQuestions"
+          element={<GeneralQuestions />}
+        />
+
         <Route path="*" element={<Error />} />
       </Routes>
     </>
