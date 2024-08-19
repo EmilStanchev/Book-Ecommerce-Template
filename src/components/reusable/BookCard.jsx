@@ -3,18 +3,11 @@
 // BookCard.js
 
 import { useContext } from "react";
-import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { CartContext } from "../contexts/cardContext";
 
 const BookCard = ({ className, book }) => {
-  const { addToCart } = useContext(CartContext); // Access addToCart function from CartContext
-
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate(`/books/${book?.id}`);
-  };
+  const { addToCart } = useContext(CartContext);
 
   return (
     //added max-w-[320px]
@@ -44,6 +37,12 @@ const BookCard = ({ className, book }) => {
         <header className="h-10 line-clamp-2">
           <h3 className="text-sm">{book?.title}</h3>
         </header>
+        {book?.category?.includes("Drama") ? (
+          <div className="bg-yellow-200  text-lg font-serif py-1 px-2 mt-2 text-center border border-brown-700 rounded shadow-sm transform rotate-2">
+            Special Offer
+          </div>
+        ) : null}
+
         <div className="flex justify-between items-center ">
           <span className="price font-medium">
             {book?.price === 0 ? (

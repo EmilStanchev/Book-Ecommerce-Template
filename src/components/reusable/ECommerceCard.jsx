@@ -11,7 +11,7 @@ const ECommerceCard = ({ onClose }) => {
   const getTotalPrice = () => {
     let sum = 0;
     cartItems?.forEach((item) => {
-      sum += item?.price * item?.count; // Multiply price by count to get total for each item
+      sum += item?.price * item?.count;
     });
     return sum;
   };

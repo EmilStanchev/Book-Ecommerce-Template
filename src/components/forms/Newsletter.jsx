@@ -10,7 +10,6 @@ const Newsletter = () => {
   };
 
   const handleSubscribe = (values) => {
-    console.log(values.email);
     setEmailValue(values.email);
     setSubscribed(true);
   };

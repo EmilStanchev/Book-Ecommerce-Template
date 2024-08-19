@@ -2,9 +2,13 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import * as cardValidator from "card-validator";
+import { useNavigate } from "react-router-dom";
 
 const Payment = ({ getTotal }) => {
+  const navigate = useNavigate();
+
   const shipping = getTotal() <= 0 ? 0 : 8;
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().email("Invalid email").required("Email is required"),
     cardHolder: Yup.string().required("Card holder name is required"),
@@ -16,8 +20,8 @@ const Payment = ({ getTotal }) => {
       .required("Card number is required"),
     creditExpiry: Yup.string()
       .test("expiry", "Invalid expiry date", (value) => {
-        const { month, year } = cardValidator.expirationDate(value);
-        return cardValidator.expirationDate.isValid({ month, year });
+        const { isValid } = cardValidator.expirationDate(value);
+        return isValid;
       })
       .required("Expiry date is required")
       .matches(
@@ -32,13 +36,14 @@ const Payment = ({ getTotal }) => {
       .required("CCV is required")
       .matches(/^\d{3}$/, "CCV should be a 3-digit number"),
     billingAddress: Yup.string().required("Billing address is required"),
-    billingState: Yup.string().required("State is required"),
     billingZIP: Yup.string().required("ZIP code is required"),
   });
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
     actions.setSubmitting(false);
+
+    // Navigate to the /checkDelivery page after successful submission
+    navigate("/checkDelivery");
   };
 
   return (
@@ -50,7 +55,6 @@ const Payment = ({ getTotal }) => {
         creditExpiry: "",
         creditCVC: "",
         billingAddress: "",
-        billingState: "",
         billingZIP: "",
       }}
       validationSchema={validationSchema}
@@ -168,18 +172,7 @@ const Payment = ({ getTotal }) => {
                   className="text-red-500"
                 />
               </div>
-              <Field
-                as="select"
-                name="billingState"
-                className="w-full rounded-md border border-gray-200 px-4 py-3 text-sm shadow-sm outline-none focus:z-10 focus:border-blue-500 focus:ring-blue-500"
-              >
-                <option value="State">State</option>
-              </Field>
-              <ErrorMessage
-                name="billingState"
-                component="div"
-                className="text-red-500"
-              />
+
               <Field
                 type="text"
                 name="billingZIP"

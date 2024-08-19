@@ -9,6 +9,7 @@ import Contact from "../../pages/Contact";
 import ScrollToTop from "../../navigation/ScrollToTop";
 import { ScrollToElement } from "../../navigation/ScrollToTop";
 import GeneralQuestions from "../../pages/GeneralQuestions";
+import CheckDelivery from "../../pages/CheckDelivery";
 
 const AppRouter = () => {
   return (
@@ -26,6 +27,7 @@ const AppRouter = () => {
           path="/contact/generalQuestions"
           element={<GeneralQuestions />}
         />
+        <Route path="/checkDelivery" element={<CheckDelivery />} />
 
         <Route path="*" element={<Error />} />
       </Routes>

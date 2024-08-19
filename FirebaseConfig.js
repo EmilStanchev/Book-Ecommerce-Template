@@ -8,8 +8,6 @@ const apiKey = import.meta.env.VITE_API_KEY;
 const projectId = import.meta.env.VITE_PROJECT_ID;
 const appId = import.meta.env.VITE_APP_ID;
 
-console.log(apiKey, projectId, appId);
-
 const firebaseConfig = {
   apiKey: `${apiKey}`,
   authDomain: "novelnest-49756.firebaseapp.com",
